@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% load static %}
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+	<script src="{% static 'js/vue.js' %}" type="text/javascript" charset="utf-8"></script>
+
+	<title>登录</title>
+	<style>
+		.login-card .column:last-child {
+  			background: url("{% static 'img/img.png' %}") center;
+  			background-size: cover;
+  			position: relative;
+  			display: flex;
+  			flex-direction: column;
+  			align-items: center;
+  			justify-content: center;
+  			gap: 40px;
+		}
+	</style>
+</head>
+
+<body>
+
+		<div class="login-card">
+			<div class="column">
+				<h1>登录</h1>
+				<p>欢迎来到音乐世界，请输入账号密码！</p>
+				<form action="sign_in" method="post">{% csrf_token %}
+					<div class="form-item">
+						<input type="text" class="form-element" placeholder="用户名" name="username" autocomplete="off"/>
+					</div>
+					<div class="form-item">
+						<input type="password" class="form-element" placeholder="密码" name="password" />
+					</div>
+					<p style="color:red">{{res}}</p>
+					<div class="flex">
+						<button type="submit">登录</button>
+						<p>欢迎来到音乐世界</p>
+					</div>
+
+					<p style="margin-top: 3rem; margin-bottom: 1.5rem"></p>
+					<div class="social-buttons">
+					</div>
+				</form>
+			</div>
+			<div class="column">
+				<h2>音乐选择号欢迎您登舰！</h2>
+				<p>如果你没有账号，你想要现在注册一个吗？</p>
+				<a href="#" onclick="goBack()">注册</a>
+				<script>
+        					function goBack() {
+            					window.location.href = "sign_up";
+        					}
+    			</script>
+			</div>
+		</div>
+
+</body>
+
+</html>

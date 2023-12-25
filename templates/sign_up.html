@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+	{% load static %}
+
+    <style>
+        .bodydiv{
+			width: 100vm;
+			height: 100vh;
+			/* background-color: antiquewhite; */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			/* background-image: url("https://img2.baidu.com/it/u=2518397659,495939156&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"); */
+		}
+		
+		body{
+			width:100vm;
+			background-image: url(https://img2.baidu.com/it/u=3830950408,3757896306&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500);
+			}
+		.mydiv
+		{	
+			width: 500px;
+			height: 400px;
+			display: flex;
+			background-color: RGB(200, 200, 200, 0.8);
+			border-radius: 30px;
+			justify-content: center;
+			align-items: center;
+		}
+		.inputdiv{
+			width: 100%;
+			height: 30px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		input{
+			height: 30px;
+			border-radius: 10px;
+		}
+		.submitStyle
+		{
+			width: 70px;
+			height: 35px;
+			background-color: aquamarine;
+			border-radius: 20px;
+		}
+		.kk
+		{
+			width: 100%;
+			
+		}
+    </style>
+</head>
+
+<body>
+
+	<div class="bodydiv">
+		<div class="mydiv">
+				<form action="/sign_up" method="post">{% csrf_token %}
+					<div class="inputdiv">
+						<input name="username" type="text" autocomplete="off" placeholder="用户名"/>
+					</div>
+					<div class="inputdiv">
+						<input name="password" type="password" placeholder="密码"/>
+					</div>
+					<div class="inputdiv">
+						<input name="password_1" type="password" placeholder="再次输入密码"/>
+					</div>
+					<p style="color:red;">{{massage}}</p>
+					
+					<div style="text-align: center;">
+						<input type="button" onclick="goBack()" value="返回登录" class="submitStyle">
+						 <script>
+        					function goBack() {
+            					window.location.href = "sign_in";
+        					}
+    					</script>
+						<input type="submit" class="submitStyle" value="注册">
+					</div>
+
+				</form>
+		</div>
+	</div>
+
+</body>
+</html>

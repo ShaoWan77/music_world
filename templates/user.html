@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}用户中心{% endblock %}
+
+{% block body %}
+
+    <div class="card mt-1 mb-3">
+        <div class="card-header">用户信息</div>
+        <div class="card-body">
+            <h5 class="card-text" style="text-align:center;">Hello {{ request.user.username }}</h5>
+        </div>
+    </div>
+
+
+    <div class="card mb-3">
+        <div class="card-header">喜欢的音乐</div>
+        <div class=" list-group" style="margin-top: 20px">
+            {% for music in user_likes %}
+                <div href="#" class="list-group-item flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ music.song_name }}</h5>
+                        <small>{{ music.song_length }} ms</small>
+                    </div>
+                    <p class="mb-1">
+                        歌手：{{ music.artist_name }} 作曲：{{ music.composer }} 作词：{{ music.lyricist }}
+                    </p>
+                    <small class="text-muted">流派：{{ music.genre_ids }}</small>
+                    <small class="text-muted">语种：{{ music.language }}</small>
+                    <div class="dropdown-divider"></div>
+                    <div class="row">
+<!--                        <a href="/play/{{ music.pk }}" class=" btn btn-outline-info" style="margin:0 20px">播放</a>-->
+                        <a href="/dislike/{{ music.pk }}?from={{ request.get_full_path }}" class=" btn btn-outline-warning" style="margin-left: 20px;border-radius:17px;">取消喜欢</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">不喜欢的音乐</div>
+        <div class="list-group" style="margin-top: 20px">
+            {% for music in user_dislikes %}
+                <div href="#" class="list-group-item flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ music.song_name }}</h5>
+                        <small>{{ music.song_length }} ms</small>
+                    </div>
+                    <p class="mb-1">
+                        歌手：{{ music.artist_name }} 作曲：{{ music.composer }} 作词：{{ music.lyricist }}
+                    </p>
+                    <small class="text-muted">流派：{{ music.genre_ids }}</small>
+                    <small class="text-muted">语种：{{ music.language }}</small>
+                    <div class="dropdown-divider"></div>
+                    <div class="row">
+<!--                        <a href="/play/{{ music.pk }}" class=" btn btn-outline-info" style="margin:0 20px">播放</a>-->
+                        <a href="/like/{{ music.pk }}?from={{ request.get_full_path }}" class=" btn btn-outline-danger" style="margin-left: 20px;border-radius:17px;">添加喜欢</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
